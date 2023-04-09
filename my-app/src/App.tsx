@@ -7,7 +7,6 @@ import { UserLogin } from "./Components/UserLogin";
 import { LeaderBoard } from "./Components/LeaderBoard";
 import Game from "./Components/Game";
 
-
 function App() {
   return (
     <div className="flex justify-center align-middle ">
@@ -16,12 +15,9 @@ function App() {
       </h1> */}
       {/* <Game/> */}
       {/* <UserLogin/> */}
-      <Allroutes/>
+      <Allroutes />
       {/* <LeaderBoard/> */}
     </div>
-      
-    
-    
   );
 }
 

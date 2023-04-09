@@ -17,8 +17,6 @@ import { addNewUser, loginUser } from "../Redux/userReducer/action";
 import { useNavigate } from "react-router-dom";
 // import {useNavigate} from "react-router-dom"
 
-
-
 export function UserLogin() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -34,33 +32,26 @@ export function UserLogin() {
     onClose: newuserClose,
   } = useDisclosure();
 
-  const player =useSelector((store:any)=>store.player)
-// Existing user
+  const player = useSelector((store: any) => store.player);
+  // Existing user
   const handleLogin = () => {
     console.log(userName);
-     // @ts-ignore
-    dispatch(loginUser(userName)).then(()=>{
-      if(player.username){
- navigate("/game")
+    // @ts-ignore
+    dispatch(loginUser(userName)).then(() => {
+      if (player.username) {
+        navigate("/game");
       }
-     
-  })
-  
+    });
   };
-
 
   // New user
   const handleSubmit = () => {
     console.log(userName);
     // @ts-ignore
-    dispatch(addNewUser(userName)).then(()=>{
-
-        navigate("/game")
-    })
-    
+    dispatch(addNewUser(userName)).then(() => {
+      navigate("/game");
+    });
   };
-
- 
 
   useEffect(() => {
     let intVal: any;
@@ -95,7 +86,7 @@ export function UserLogin() {
         <div className="bg-[#2B3033] p-10 rounded">
           <div className="flex justify-center items-center">
             <Button
-              style={{ display: "flex", justifyContent: "center",}}
+              style={{ display: "flex", justifyContent: "center" }}
               onClick={onOpen}
             >
               Existing user
@@ -103,7 +94,7 @@ export function UserLogin() {
           </div>
           <div className="flex justify-center items-center m-4">
             <Button
-              style={{ display: "flex", justifyContent: "center", }}
+              style={{ display: "flex", justifyContent: "center" }}
               onClick={newuserOpen}
             >
               New user
@@ -165,7 +156,7 @@ export function UserLogin() {
 
           <ModalFooter>
             <Button
-            width={"100%"}
+              width={"100%"}
               colorScheme="blue"
               mr={3}
               onClick={() => {
