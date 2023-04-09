@@ -1,43 +1,64 @@
 import React, { Dispatch, useEffect } from 'react'
 import {useDispatch, useSelector} from "react-redux"
 
-import { getUsersData } from '../Redux/userReducer/action'
+import { getLeadersData, getUsersData } from '../Redux/userReducer/action'
 import axios from 'axios'
 import { userType } from '../Constants/types'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
+} from '@chakra-ui/react'
 
 export const LeaderBoard = () => {
 
-    const users =useSelector((store:any)=>store.users)
+    const users =useSelector((store:any)=>store.leaderBoard)
     
     const dispatch: Dispatch<any> = useDispatch();
    
     useEffect(()=>{
-        dispatch(getUsersData)
+        dispatch(getLeadersData)
     },[])
 
-    console.log(users)
 
      
 
   return (
-    <div className="text-center fixed flex items-center right-0 bg-blue-500 h-screen" >
+    <div className="text-center fixed flex items-center right-[20px]  h-[500px] rounded-[10px] " >
       
-      <table className="w-96  max-w-3xl" >
-        <thead>
-          <tr>
-            <th  >User</th>
-            <th >Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user:userType,i:number) => (
-            <tr key={user._id} >
-              <td className="border px-4 py-2">{user.username}</td>
-              <td className="border px-4 py-2">{user.bestScore}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    
+
+      <TableContainer className="w-96  max-w-3xl">
+  <Table variant='striped' colorScheme='teal'>
+   
+    <Thead>
+      <Tr>
+        <Th>Name</Th>
+        <Th>Best Score</Th>
+        
+      </Tr>
+    </Thead>
+    <Tbody>
+     {
+users.map((user:userType,i:number)=>(
+  <Tr>
+        <Td className='text-[#aaadb0]'>{user.username}</Td>
+        <Td className='text-[#aaadb0]'>{user.bestScore}</Td>
+        
+      </Tr>
+))
+     } 
+      
+    </Tbody>
+    
+  </Table>
+</TableContainer>
     </div>
   )
 }

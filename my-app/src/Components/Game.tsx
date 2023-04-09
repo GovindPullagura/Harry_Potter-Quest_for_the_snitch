@@ -1,4 +1,9 @@
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
+import { LeaderBoard } from "./LeaderBoard";
+import { Score } from "./Score";
+
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, upadteuserScore } from "../Redux/userReducer/action";
 const BIRD_HEIGHT = 60;
 const BIRD_WIDTH = 85;
 const WALL_HEIGHT = 600;
@@ -19,6 +24,56 @@ function Game() {
   const BelowObstacleHeihgt:number = WALL_HEIGHT - OBJ_GAP - objHeight;
   const BelowObstacleTop :number =
     WALL_HEIGHT - (objHeight + (WALL_HEIGHT - OBJ_GAP - objHeight));
+
+   const die =()=>{
+    new Audio("die.mp3").play()
+   }
+
+   const flap =()=>{
+    new Audio("flap.mp3").play()
+   }
+
+   const point =()=>{
+    new Audio("point.mp3").play()
+   }
+
+
+
+   const CurrentPlayer =localStorage.getItem("player")||""
+ 
+
+   const player =useSelector((store:any)=>store.player)
+
+   const dispatch: Dispatch<any> = useDispatch();
+  
+   useEffect(()=>{
+dispatch(loginUser(CurrentPlayer))
+
+   },[])
+
+   
+   const updateScore =()=>{
+    if(score>player.bestScore){
+      dispatch(upadteuserScore(score,player._id))
+    }
+   }
+  
+
+   useEffect(()=>{
+    if(birdpos>=540){
+      setIsStart(false)
+      setBirspos(300);
+      updateScore()
+      setScore(0);
+      setShow(false)
+
+      // console.log("game over")
+      die()
+
+
+    }
+
+   },[birdpos,isStart])
 
   useEffect(() => {
     let intVal: any;
@@ -45,6 +100,7 @@ function Game() {
       setObjHeight(Math.floor(Math.random() * (WALL_HEIGHT - OBJ_GAP)));
       if (isStart) {
         setScore((score) => score + 1);
+        point()
         if (score > 0 && score % 8 === 0) {
           setObjSpeed((prev) => prev + 5);
           setGravity((grav) => grav + 0.7);
@@ -63,36 +119,56 @@ function Game() {
     if (
       objPos >= OBJ_WIDTH &&
       objPos <= OBJ_WIDTH + 80 &&
-      (topObj || bottomObj)
+      (topObj || bottomObj  )
     ) {
       setIsStart(false);
       setBirspos(300);
+      updateScore()
       setScore(0);
       setShow(false)
+      die()
+      // game over
+      
     }
   }, [isStart, birdpos, objHeight, objPos]);
 
   const handler = () => {
+
     if (!isStart) {
-      setIsStart(true)
+      // setIsStart(true)
       setShow(true)
+    
     } 
     else if (birdpos < BIRD_HEIGHT) {
       setBirspos(0);
       setGravity(12);
       setObjSpeed(10);
       setShow(false)
-    } else setBirspos((birdpos) => birdpos - 90);
+        
+    } else{
+      setBirspos((birdpos) => birdpos - 90);
+      flap()
+    } 
   };
   return (
+    <div className="w-full flex justify-center h-screen bg-fixed bg-cover bg-no-repeat bg-[url('https://i.postimg.cc/Hx5BXvJG/hogwarts-castle-hd-harry-potter-and-the-chamber-of-secrets-1920x1080.jpg')]">
+    
+   
+    
+    
     <div
+
       onClick={handler}
-      className="h-screen  flex justify-center items-center m-auto  "
-    >
-      <span>Score: {score}</span>
-      <div className={`bg-[url('https://i.postimg.cc/63wZZwkM/Quidditchpitch-1.webp')] bg-no-repeat  bg-[length:600px_800px]  w-[${WALL_WIDTH}px] h-[${WALL_HEIGHT}px]  relative overflow-hidden  `}>
+      className="h-screen  flex justify-center items-center m-auto"
+    > 
+    <Score score={score} />
+
+      {/* <span>Score: {score}</span> */}
+      <div className={`bg-[url('https://i.postimg.cc/63wZZwkM/Quidditchpitch-1.webp')] bg-no-repeat  bg-[length:600px_800px]  w-[600px] h-[600px]  relative overflow-hidden  rounded-[10px]`}>
         {!isStart ? (
-          <div className="relative rounded-full top-[49%]  bg-red-600 p-[10px] w-[150px] ml-[-50px] text-center text-[20px] text-white font-semibold left-1/2">
+          <div className="relative rounded-full top-[49%]  bg-red-600 p-[10px] w-[150px] ml-[-50px] text-center text-[20px] text-white font-semibold left-1/2"
+          onClick={()=>setIsStart(true)}
+          >
             Play
           </div>
         ) : null}
@@ -134,6 +210,8 @@ function Game() {
           }}
         />}
       </div>
+      <LeaderBoard/>
+    </div>
     </div>
   );
 }

@@ -8,6 +8,8 @@
  }
 export type userReducerState = {
     users: []|userType[],
+    leaderBoard:[]|userType[],
+    player:userType,
     isLoading :Boolean,
     isError: Boolean
   }
