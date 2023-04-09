@@ -1,9 +1,9 @@
 
 
  export  type userType= {
-    _id :String,
-    username :String,
-    bestScore: Number,
+    _id :string,
+    username :string,
+    bestScore: number,
 
  }
 export type userReducerState = {

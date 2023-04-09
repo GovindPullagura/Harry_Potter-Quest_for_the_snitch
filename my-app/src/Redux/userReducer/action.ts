@@ -38,15 +38,30 @@ export const getUsersData  = (dispatch: Dispatch<any>) => {
 };
 
 
-export const addNewUser = () => (dispatch: Dispatch<any>) => {
+export const addNewUser = (userNAme:string) => (dispatch: Dispatch<any>) => {
   dispatch(usersRequestAction());
 
-  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/user`).then((res) => {
+  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/newuser`,{username:userNAme}).then((res) => {
+    console.log(res.data)
     dispatch( AddusersSuccessAction());
+    console.log(res)
     }).catch((e) => {
       dispatch(usersFailureAction());
     });
 };
+
+export const loginUser = (userNAme:string) => (dispatch: Dispatch<any>) => {
+  dispatch(usersRequestAction());
+
+  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/user`,{username:userNAme}).then((res) => {
+    console.log(res.data)
+    dispatch( AddusersSuccessAction());
+    console.log(res)
+    }).catch((e) => {
+      dispatch(usersFailureAction());
+    });
+};
+
 
 
 export const upadteuserScore = () => (dispatch: Dispatch<any>) => {
