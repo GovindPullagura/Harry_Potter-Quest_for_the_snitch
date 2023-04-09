@@ -1,13 +1,15 @@
 
 
  export  type userType= {
-    _id :String,
-    username :String,
-    bestScore: Number,
+    _id :string,
+    username :string,
+    bestScore: number,
 
  }
 export type userReducerState = {
     users: []|userType[],
+    leaderBoard:[]|userType[],
+    player:userType,
     isLoading :Boolean,
     isError: Boolean
   }

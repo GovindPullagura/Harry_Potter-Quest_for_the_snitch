@@ -10,6 +10,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+    color :#aaadb0
   }
 }
 
@@ -36,3 +37,5 @@
     transform: rotate(360deg);
   }
 }
+
+
