@@ -15,6 +15,7 @@ import { Dispatch, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewUser, loginUser } from "../Redux/userReducer/action";
 import { useNavigate } from "react-router-dom";
+import { userType } from "../Constants/types";
 // import {useNavigate} from "react-router-dom"
 
 export function UserLogin() {
@@ -46,7 +47,6 @@ export function UserLogin() {
 
   // New user
   const handleSubmit = () => {
-    console.log(userName);
     // @ts-ignore
     dispatch(addNewUser(userName)).then(() => {
       navigate("/game");
@@ -83,7 +83,7 @@ export function UserLogin() {
             style={{ marginTop: `${pos}%`, transition: "0.5s" }}
           />
         </div>
-        <div className="bg-[#2B3033] p-10 rounded">
+        <div className="bg-[#749197] p-10 rounded">
           <div className="flex justify-center items-center">
             <Button
               style={{ display: "flex", justifyContent: "center" }}
@@ -129,7 +129,6 @@ export function UserLogin() {
               width={"100%"}
               onClick={() => {
                 handleLogin();
-                onClose();
               }}
             >
               Enter
