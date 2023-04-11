@@ -19,6 +19,9 @@ Deployed Link - https://flyingharry.vercel.app/
  - Harry potter will be falling down due to gravity, so player has to make harry fly by clicking on the PRIMARY MOUSE BUTTON
  - Harry will face some obsacles in his way, player has to pass between those obstacles to score a point other wise harry will die and the game will end
  
+ <img width="1434" alt="Screenshot 2023-04-11 at 2 42 25 PM" src="https://user-images.githubusercontent.com/105652500/231113541-31ea6029-ae77-47c5-a44f-07148633240d.png">
+
+ 
 ## Tech Stack
   - HTML
   - TypeScript
