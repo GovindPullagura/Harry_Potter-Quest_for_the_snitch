@@ -33,10 +33,15 @@ export function UserLogin() {
     onClose: newuserClose,
   } = useDisclosure();
 
+  const player = useSelector((store: any) => store.player);
+  // Existing user
   const handleLogin = () => {
+    console.log(userName);
     // @ts-ignore
     dispatch(loginUser(userName)).then(() => {
-      navigate("/game");
+      if (player.username) {
+        navigate("/game");
+      }
     });
   };
 
