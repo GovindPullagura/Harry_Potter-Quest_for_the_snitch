@@ -13,7 +13,8 @@ Deployed Link - https://flyingharry.vercel.app/
  - Score card to show player's bestscore and current score
  
 ## Procedure to play the game
- - If the player is new to this game, he has to create unique username to proceed to the game, else if he is an existing user he can enter the game by giving his unique username and he will be redirected to the game page
+ - If the player is new to this game, he has to create unique username to proceed to the game
+ - If he is an existing user he can enter the game by giving his unique username and he will be redirected to the game page
  - Game starts when player clicks on "Play" button on the screen
  - Harry potter will be falling down due to gravity, so player has to make harry fly by clicking on the PRIMARY MOUSE BUTTON
  - Harry will face some obsacles in his way, player has to pass between those obstacles to score a point other wise harry will die and the game will end
