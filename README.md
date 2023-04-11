@@ -1,6 +1,7 @@
 # Harry potter - Quest for the Snitch
 
 Harry potter is the game built by taking inspiration from the game Flappy Bird. 
+<img width="1434" alt="Screenshot 2023-04-11 at 2 37 35 PM" src="https://user-images.githubusercontent.com/105652500/231112291-80446284-cedc-4a7c-8dcb-13358c3d4365.png">
 
 ## Features
  - Simple Login functionality by giving user's unique username
