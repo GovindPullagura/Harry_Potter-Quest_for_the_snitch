@@ -10,6 +10,7 @@ import {
   useDisclosure,
   Input,
   Heading,
+  useToast,
 } from "@chakra-ui/react";
 import { Dispatch, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +20,7 @@ import { userType } from "../Constants/types";
 // import {useNavigate} from "react-router-dom"
 
 export function UserLogin() {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [userName, setUserName] = useState<string>("");
@@ -38,8 +40,22 @@ export function UserLogin() {
   const handleLogin = () => {
     console.log(userName);
     // @ts-ignore
-    dispatch(loginUser(userName)).then(() => {
-      if (player.username) {
+    dispatch(loginUser(userName)).then((res) => {
+      if (res == "User does not exist") {
+        toast({
+          title: "Login failed",
+          description: "User does not exist",
+          status: "error",
+          duration: 7000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Login success",
+          status: "success",
+          duration: 7000,
+          isClosable: true,
+        });
         navigate("/game");
       }
     });
@@ -48,8 +64,25 @@ export function UserLogin() {
   // New user
   const handleSubmit = () => {
     // @ts-ignore
-    dispatch(addNewUser(userName)).then(() => {
-      navigate("/game");
+    dispatch(addNewUser(userName)).then((res) => {
+      // console.log(res);
+      if (res == "Username Exists") {
+        toast({
+          title: "SignUp failed",
+          description: "Username Exists",
+          status: "error",
+          duration: 7000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "SignUp success",
+          status: "success",
+          duration: 7000,
+          isClosable: true,
+        });
+        navigate("/game");
+      }
     });
   };
 

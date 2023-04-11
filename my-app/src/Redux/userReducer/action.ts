@@ -69,10 +69,11 @@ export const addNewUser = (userNAme: string) => (dispatch: Dispatch<any>) => {
       console.log(res.data);
       localStorage.setItem("player", res.data.username);
       dispatch(AddusersSuccessAction(res.data));
-      // console.log(res)
+      return res;
     })
     .catch((e) => {
       dispatch(usersFailureAction());
+      return e.response.data;
     });
 };
 
@@ -85,10 +86,11 @@ export const loginUser = (userNAme: string) => (dispatch: Dispatch<any>) => {
       console.log(res.data);
       dispatch(AddusersSuccessAction(res.data));
       localStorage.setItem("player", res.data.username);
-      console.log(res);
+      return res;
     })
     .catch((e) => {
       dispatch(usersFailureAction());
+      return e.response.data;
     });
 };
 
