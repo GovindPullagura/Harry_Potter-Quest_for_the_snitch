@@ -34,7 +34,7 @@ export const LeaderBoard = () => {
       
     
 
-      <TableContainer className="w-96  max-w-3xl">
+      <TableContainer className="w-80  max-w-3xl">
   <Table variant='striped' colorScheme='teal'>
    
     <Thead>
@@ -47,7 +47,7 @@ export const LeaderBoard = () => {
     <Tbody>
      {
 users.map((user:userType,i:number)=>(
-  <Tr>
+  <Tr key={i}>
         <Td className='text-[#aaadb0]'>{user.username}</Td>
         <Td className='text-[#aaadb0]'>{user.bestScore}</Td>
         

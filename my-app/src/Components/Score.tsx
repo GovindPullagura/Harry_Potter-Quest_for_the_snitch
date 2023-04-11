@@ -10,7 +10,7 @@ score:number
 
 export const Score = ({score }:ScoreInput) => {
     const CurrentPlayer =localStorage.getItem("player")||""
-    console.log(CurrentPlayer)
+
 
     const player =useSelector((store:any)=>store.player)
 

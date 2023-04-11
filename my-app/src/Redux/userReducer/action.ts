@@ -72,10 +72,10 @@ export const loginUser = (userNAme:string) => (dispatch: Dispatch<any>) => {
   dispatch(usersRequestAction());
 
   return axios.post(`${process.env.REACT_APP_BACKEND_URL}/user`,{username:userNAme}).then((res:AxiosResponse<userType>) => {
-    console.log(res.data)
+    console.log(res)
     dispatch( AddusersSuccessAction(res.data));
     localStorage.setItem("player",(res.data.username))
-    console.log(res)
+ 
     }).catch((e) => {
       dispatch(usersFailureAction());
     });

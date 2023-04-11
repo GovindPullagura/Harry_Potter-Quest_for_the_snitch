@@ -44,32 +44,38 @@ function Game() {
 
    const player =useSelector((store:any)=>store.player)
 
+
    const dispatch: Dispatch<any> = useDispatch();
   
    useEffect(()=>{
 dispatch(loginUser(CurrentPlayer))
 
-   },[])
 
+   },[])
+   if(score>player.bestScore){
+    dispatch(upadteuserScore(score,player._id))
+  }
    
    const updateScore =()=>{
     if(score>player.bestScore){
       dispatch(upadteuserScore(score,player._id))
     }
+    
    }
-  
+   
 
    useEffect(()=>{
     if(birdpos>=540){
       setIsStart(false)
       setBirspos(300);
-      updateScore()
+    
       setScore(0);
       setShow(false)
 
       // console.log("game over")
       die()
-
+  
+  
 
     }
 
