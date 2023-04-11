@@ -10,6 +10,8 @@ import {
   useDisclosure,
   Input,
   Heading,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { Dispatch, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +25,8 @@ export function UserLogin() {
 
   const [userName, setUserName] = useState<string>("");
   const [pos, setPos] = useState<number>(25);
+  const isError = useSelector((store: any) => store.isError);
+  const [err,setErr]=useState<boolean>(isError)
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -33,17 +37,31 @@ export function UserLogin() {
     onClose: newuserClose,
   } = useDisclosure();
 
-  const player = useSelector((store: any) => store.player);
+
+
+
+
+
+// console.log(isError)
+
+
   // Existing user
+  if(isError){
+    // alert("Incorrect Username")
+    setErr(true)
+    // onClose()
+ 
+    }
+
   const handleLogin = () => {
     console.log(userName);
     // @ts-ignore
-    dispatch(loginUser(userName)).then(() => {
-      if (player.username) {
-        navigate("/game");
-      }
-    });
+    dispatch(loginUser(userName))
+    
+   
+    
   };
+  
 
   // New user
   const handleSubmit = () => {
@@ -53,30 +71,32 @@ export function UserLogin() {
     });
   };
 
-  useEffect(() => {
-    let intVal: any;
-    {
-      if (pos == 25) {
-        intVal = setInterval(() => {
-          setPos(35);
-        }, 1000);
-      } else {
-        intVal = setInterval(() => {
-          setPos(25);
-        }, 1000);
-      }
-    }
-    return () => clearInterval(intVal);
-  });
+  // useEffect(() => {
+  //   let intVal: any;
+  //   {
+  //     if (pos == 25) {
+  //       intVal = setInterval(() => {
+  //         setPos(35);
+  //       }, 1000);
+  //     } else {
+  //       intVal = setInterval(() => {
+  //         setPos(25);
+  //       }, 1000);
+  //     }
+  //   }
+  //   return () => clearInterval(intVal);
+  // });
   return (
     <div className="w-full flex justify-center h-screen bg-fixed bg-cover bg-no-repeat bg-[url('https://i.postimg.cc/LXQSrX9B/Untitled-design-3-1.png')]">
-      {/* <Heading size={"4xl"} color={'yellow'} className='text-center '>Harry potter
-      <br></br> The Dementor's Curse</Heading> */}
-      {/* <audio controls autoPlay>
-        <source src="audio.mp3" type="audio/mpeg"></source>
-        
-      </audio> */}
+    
+
       <div>
+     {
+err&&<Alert status='success' variant='subtle'>
+<AlertIcon />
+Data uploaded to the server. Fire on!
+</Alert>
+     } 
         <div style={{ height: "40%" }} className=" border-y border-[#041529]">
           <img
             src="https://i.postimg.cc/yNYqM3L3/harry-1-removebg-preview.png"
@@ -124,9 +144,11 @@ export function UserLogin() {
 
           <ModalFooter>
             <Button
-              colorScheme="blue"
+              // colorScheme="blue"
+              backgroundColor={"#043F50"}
               mr={3}
               width={"100%"}
+              color={"white"}
               onClick={() => {
                 handleLogin();
               }}
@@ -156,7 +178,9 @@ export function UserLogin() {
           <ModalFooter>
             <Button
               width={"100%"}
-              colorScheme="blue"
+              color={"white"}
+              backgroundColor={"#043F50"}
+              
               mr={3}
               onClick={() => {
                 handleSubmit();

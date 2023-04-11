@@ -53,6 +53,10 @@ function Game() {
     }
   };
 
+  if (score > player.bestScore) {
+    dispatch(upadteuserScore(score, player._id));
+  }
+  
   useEffect(() => {
     if (birdpos >= 540) {
       setIsStart(false);
@@ -65,6 +69,8 @@ function Game() {
       die();
     }
   }, [birdpos, isStart]);
+
+  
 
   useEffect(() => {
     let intVal: any;
