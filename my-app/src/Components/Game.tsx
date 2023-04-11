@@ -2,6 +2,7 @@ import { Dispatch, useEffect, useState } from "react";
 import { LeaderBoard } from "./LeaderBoard";
 import { Score } from "./Score";
 
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, upadteuserScore } from "../Redux/userReducer/action";
 const BIRD_HEIGHT = 60;
@@ -13,6 +14,7 @@ const OBJ_WIDTH = 53;
 
 const OBJ_GAP = 200;
 function Game() {
+  const navigate = useNavigate();
   const [isStart, setIsStart] = useState<boolean>(false);
   const [birdpos, setBirspos] = useState<number>(300);
   const [objHeight, setObjHeight] = useState<number>(0);
@@ -38,6 +40,9 @@ function Game() {
   };
 
   const CurrentPlayer = localStorage.getItem("player") || "";
+  if (CurrentPlayer == "") {
+    navigate("/");
+  }
 
   const player = useSelector((store: any) => store.player);
 
@@ -47,17 +52,16 @@ function Game() {
     dispatch(loginUser(CurrentPlayer));
   }, []);
 
-  const updateScore = () => {
-    if (score > player.bestScore) {
-      dispatch(upadteuserScore(score, player._id));
-    }
-  };
+  // const updateScore = () => {
+  if (score > player.bestScore) {
+    dispatch(upadteuserScore(score, player._id));
+  }
+  // };
 
   useEffect(() => {
     if (birdpos >= 540) {
       setIsStart(false);
       setBirspos(300);
-      updateScore();
       setScore(0);
       setShow(false);
 
@@ -114,7 +118,6 @@ function Game() {
     ) {
       setIsStart(false);
       setBirspos(300);
-      updateScore();
       setScore(0);
       setShow(false);
       die();

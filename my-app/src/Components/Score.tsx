@@ -43,7 +43,8 @@ export const Score = ({ score }: ScoreInput) => {
       style={{
         position: "fixed",
         left: "50px",
-        backgroundColor: "#B2F5EA",
+        // backgroundColor: "#B2F5EA",
+        background: "rgba(0, 0, 0, 0)",
         width: "20%",
       }}
     >
@@ -53,27 +54,22 @@ export const Score = ({ score }: ScoreInput) => {
             {/* <div  style={{width:"25px"}}>{player.username[0]}</div> */}
 
             <Box>
-              <Heading size="lg">{player.username}</Heading>
+              <Heading color={"white"} size="lg">
+                Hello, {player.username}
+              </Heading>
             </Box>
           </Flex>
-          <IconButton
-            variant="ghost"
-            colorScheme="gray"
-            aria-label="See menu"
-            // icon={<BsThreeDotsVertical />}
-          />
         </Flex>
       </CardHeader>
       <CardBody>
-        <Text fontSize={"20px"}>Best Score : {player.bestScore}</Text>
+        <Text color={"white"} fontSize={"20px"}>
+          Your Best Score : {player.bestScore}
+        </Text>
 
-        <Text fontSize={"20px"}>Current Score : {score}</Text>
+        <Text color={"white"} fontSize={"20px"}>
+          Current Score : {score}
+        </Text>
       </CardBody>
-      {/* <Image
-    objectFit='cover'
-    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-    alt='Chakra UI'
-  /> */}
 
       <CardFooter
         justify="space-between"

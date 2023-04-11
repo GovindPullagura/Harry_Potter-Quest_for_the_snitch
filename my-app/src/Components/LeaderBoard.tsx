@@ -9,6 +9,7 @@ import {
   Thead,
   Tbody,
   Tfoot,
+  Heading,
   Tr,
   Th,
   Td,
@@ -26,20 +27,31 @@ export const LeaderBoard = () => {
   }, []);
 
   return (
-    <div className="text-center fixed flex items-center right-[20px]  h-[500px] rounded-[10px] ">
-      <TableContainer className="w-96  max-w-3xl">
-        <Table variant="striped" colorScheme="teal">
+    <div className="text-center fixed flex items-center right-[20px] h-[500px] rounded-[10px] ">
+      <TableContainer className="w-80  max-w-3xl" border={"1px solid white"}>
+        <Heading textDecoration={"underline"} as={"h2"} color={"white"}>
+          Leaderboard
+        </Heading>
+        <Table variant="striped" colorScheme="orange.600">
           <Thead>
             <Tr>
-              <Th>Name</Th>
-              <Th>Best Score</Th>
+              <Th fontSize={"xl"} color={"white"}>
+                Name
+              </Th>
+              <Th fontSize={"xl"} color={"white"}>
+                Best Score
+              </Th>
             </Tr>
           </Thead>
           <Tbody>
             {users.map((user: userType, i: number) => (
               <Tr>
-                <Td className="text-[#aaadb0]">{user.username}</Td>
-                <Td className="text-[#aaadb0]">{user.bestScore}</Td>
+                <Td fontSize={"lg"} fontWeight={"bold"} color={"white"}>
+                  {user.username}
+                </Td>
+                <Td fontSize={"lg"} fontWeight={"bold"} color={"white"}>
+                  {user.bestScore}
+                </Td>
               </Tr>
             ))}
           </Tbody>
