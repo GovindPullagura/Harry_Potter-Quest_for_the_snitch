@@ -37,6 +37,6 @@ Deployed Link - https://flyingharry.vercel.app/
   - NodeJS
  
 ## Contributors
- - <link to="https://github.com/Sajay0623">Ajay Sahu</link>
+ - <a href="https://github.com/Sajay0623">Ajay Sahu</a>
  - Govind Pullagura
  - Kavita Mali
