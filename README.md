@@ -39,4 +39,4 @@ Deployed Link - https://flyingharry.vercel.app/
 ## Contributors
  - Ajay Sahu
  - Govind Pullagura
- - Kavita Mali
+ - Kavita Mali (@Kavita13feb)
