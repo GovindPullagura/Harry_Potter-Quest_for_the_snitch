@@ -38,5 +38,5 @@ Deployed Link - https://flyingharry.vercel.app/
  
 ## Contributors
  - <a href="https://github.com/Sajay0623">Ajay Sahu</a>
- - Govind Pullagura
- - Kavita Mali
+ - <a href="https://github.com/GovindPullagura">Govind Pullagura</a>
+ - <a href="https://github.com/Kavita13feb">Kavita Mali</a>
